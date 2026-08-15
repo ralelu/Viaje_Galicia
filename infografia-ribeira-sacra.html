@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infografía · Ribeira Sacra · 21–22 agosto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Karla:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pizarra:#23282B;
+    --pizarra-2:#2E3437;
+    --piedra:#EDEEE8;
+    --mencia:#5E1B2B;
+    --mencia-claro:#8A3247;
+    --bosque:#37503D;
+    --oro:#B98F1F;
+    --tinta:#1B1F21;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--pizarra);font-family:'Karla',sans-serif;color:var(--piedra);display:flex;justify-content:center;padding:24px 12px}
+  .poster{width:100%;max-width:720px;background:var(--pizarra-2);border:1px solid rgba(237,238,232,.14);overflow:hidden}
+
+  /* Cabecera con curvas de nivel del cañón */
+  header{position:relative;padding:56px 40px 44px;background:var(--pizarra);overflow:hidden}
+  header svg.contornos{position:absolute;inset:0;width:100%;height:100%;opacity:.22}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--oro);position:relative}
+  h1{font-family:'Marcellus',serif;font-size:clamp(38px,7vw,56px);line-height:1.02;margin-top:14px;position:relative;font-weight:400}
+  .sub{margin-top:14px;font-size:15px;color:rgba(237,238,232,.75);max-width:46ch;position:relative}
+  .fechas{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap;position:relative}
+  .chip{font-family:'IBM Plex Mono',monospace;font-size:12px;padding:7px 12px;border:1px solid rgba(237,238,232,.3);letter-spacing:.06em}
+  .chip strong{color:var(--oro);font-weight:600}
+
+  /* Días */
+  .dia{padding:38px 40px 8px}
+  .dia + .dia{border-top:1px solid rgba(237,238,232,.12)}
+  .dia-cab{display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
+  .dia-num{font-family:'Marcellus',serif;font-size:44px;color:var(--mencia-claro);line-height:1}
+  .dia-titulo h2{font-family:'Marcellus',serif;font-weight:400;font-size:24px;letter-spacing:.01em}
+  .dia-titulo p{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(237,238,232,.55);margin-top:4px}
+
+  .paso{display:grid;grid-template-columns:64px 18px 1fr;gap:0 14px;padding-bottom:26px;position:relative}
+  .hora{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;color:var(--oro);padding-top:2px;text-align:right}
+  .nodo{position:relative}
+  .nodo::before{content:"";position:absolute;left:50%;top:8px;bottom:-26px;width:1px;background:rgba(237,238,232,.22);transform:translateX(-50%)}
+  .paso:last-child .nodo::before{display:none}
+  .punto{width:9px;height:9px;border-radius:50%;background:var(--mencia-claro);border:2px solid var(--pizarra-2);outline:1px solid var(--mencia-claro);position:relative;top:4px;margin:0 auto}
+  .paso.destacado .punto{background:var(--oro);outline-color:var(--oro);width:11px;height:11px}
+  .paso h3{font-size:16.5px;font-weight:700;letter-spacing:.01em}
+  .paso h3 .tag{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--pizarra);background:var(--oro);padding:2px 7px;margin-left:8px;position:relative;top:-2px}
+  .paso p{font-size:14px;line-height:1.5;color:rgba(237,238,232,.72);margin-top:5px;max-width:52ch}
+  .paso .comer{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:13px;color:var(--oro)}
+  .paso .comer svg{flex:none}
+
+  /* Bloques de cierre */
+  .franja{margin:30px 40px 0;padding:22px 24px;background:var(--mencia);}
+  .franja h4{font-family:'Marcellus',serif;font-weight:400;font-size:18px;margin-bottom:10px}
+  .franja ul{list-style:none}
+  .franja li{font-size:13.5px;line-height:1.55;color:rgba(237,238,232,.88);padding-left:18px;position:relative}
+  .franja li::before{content:"—";position:absolute;left:0;color:var(--oro)}
+  footer{padding:26px 40px 34px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+  footer .marca{font-family:'Marcellus',serif;font-size:15px;color:rgba(237,238,232,.6)}
+  footer .marca span{color:var(--oro)}
+  footer .mono{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,238,232,.45)}
+  @media (max-width:560px){
+    header{padding:44px 24px 36px}
+    .dia{padding:32px 20px 6px}
+    .franja{margin:26px 20px 0}
+    footer{padding:24px 20px 30px}
+    .paso{grid-template-columns:52px 16px 1fr;gap:0 10px}
+  }
+  @media print{body{padding:0;background:#fff}.poster{max-width:none;border:none}}
+</style>
+</head>
+<body>
+<div class="poster">
+  <header>
+    <svg class="contornos" viewBox="0 0 720 260" preserveAspectRatio="none" aria-hidden="true">
+      <g fill="none" stroke="#8A3247" stroke-width="1.1">
+        <path d="M-10,220 C120,180 200,235 330,195 C470,152 560,215 730,170"/>
+        <path d="M-10,190 C130,150 220,205 350,165 C480,124 580,185 730,140"/>
+        <path d="M-10,160 C140,122 240,175 370,137 C495,100 595,155 730,112"/>
+        <path d="M-10,130 C150,96 255,145 385,110 C505,78 610,126 730,86"/>
+        <path d="M-10,100 C160,70 268,115 398,84 C515,58 622,98 730,62"/>
+        <path d="M-10,72 C170,46 280,88 410,60 C525,38 632,72 730,40"/>
+      </g>
+    </svg>
+    <p class="eyebrow">Galicia · Etapa 1 de 2</p>
+    <h1>Ribeira Sacra</h1>
+    <p class="sub">Dos días entre el cañón del Sil y los meandros del Miño: monasterios, viñedos heroicos y miradores de vértigo. Base: Carballedo (Lugo).</p>
+    <div class="fechas">
+      <span class="chip">VIE <strong>21 AGO</strong> · llegada</span>
+      <span class="chip">SÁB <strong>22 AGO</strong> · catamarán 11:00</span>
+      <span class="chip">Check-in apto. <strong>16:00</strong></span>
+    </div>
+  </header>
+
+  <!-- DÍA 21 -->
+  <section class="dia">
+    <div class="dia-cab">
+      <span class="dia-num">21</span>
+      <div class="dia-titulo">
+        <h2>Miño, viñedos y monasterios</h2>
+        <p>Viernes · ruta de llegada</p>
+      </div>
+    </div>
+
+    <div class="paso">
+      <span class="hora">~12:00</span>
+      <span class="nodo"><span class="punto"></span></span>
+      <div>
+        <h3>Mosteiro de Oseira</h3>
+        <p>El «Escorial gallego», a 20 min de Carballedo. Visitas guiadas por los propios monjes cistercienses: pase de mañana (antes de las 12:30) o de tarde (~15:30).</p>
+        <span class="comer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20c6-2 10-6 12-12M8 16c4-1 7-4 8-8"/></svg>Comida en Cea: mesones con el famoso pan de Cea (IXP)</span>
+      </div>
+    </div>
+
+    <div class="paso destacado">
+      <span class="hora">16:00</span>
+      <span class="nodo"><span class="punto"></span></span>
+      <div>
+        <h3>Check-in en Carballedo <span class="tag">Casa</span></h3>
+        <p>Entrada al apartamento y descanso breve.</p>
+      </div>
+    </div>
+
+    <div class="paso">
+      <span class="hora">18:00</span>
+      <span class="nodo"><span class="punto"></span></span>
+      <div>
+        <h3>Miradoiro do Cabo do Mundo</h3>
+        <p>El meandro del Miño más fotografiado, con luz de tarde perfecta (~25 min). Al lado, la joya románica de San Estevo de Ribas de Miño.</p>
+      </div>
+    </div>
+
+    <div class="paso">
+      <span class="hora">19:15</span>
+      <span class="nodo"><span class="punto"></span></span>
+      <div>
+        <h3>Presa y socalcos de Belesar</h3>
+        <p>Viñedos en terrazas cayendo al agua: el paisaje que define la Ribeira Sacra. Bodegas de la zona con cata si se reserva antes.</p>
+      </div>
+    </div>
+
+    <div class="paso">
+      <span class="hora">21:00</span>
+      <span class="nodo"><span class="punto"></span></span>
+      <div>
+        <h3>Cena en Chantada</h3>
+        <p>A 15 min de casa.</p>
+        <span class="comer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20c6-2 10-6 12-12M8 16c4-1 7-4 8-8"/></svg>Ternera gallega a la brasa + mencía de la casa</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DÍA 22 -->
+  <section class="dia">
+    <div class="dia-cab">
+      <span class="dia-num">22</span>
+      <div class="dia-titulo">
+        <h2>Cañón del Sil</h2>
+        <p>Sábado · el gran día</p>
+      </div>
+    </div>
+
+    <div class="paso">
+      <span class="hora">8:40</span>
+      <span class="nodo"><span class="punto"></span></span>
+      <div>
+        <h3>Salida hacia Abeleda</h3>
+        <p>Vía Monforte y la LU-903 bajando a Doade (~1h15). Depósito lleno: en el cañón no hay gasolineras.</p>
+      </div>
+    </div>
+
+    <div class="paso">
+      <span class="hora">9:50</span>
+      <span class="nodo"><span class="punto"></span></span>
+      <div>
+        <h3>Miradoiro da Cividade</h3>
+        <p>Parada de 10 min: el cañón desde arriba con luz de mañana, justo el tramo que vais a navegar.</p>
+      </div>
+    </div>
+
+    <div class="paso destacado">
+      <span class="hora">10:15</span>
+      <span class="nodo"><span class="punto"></span></span>
+      <div>
+        <h3>Embarcadoiro de Abeleda <span class="tag">Reserva</span></h3>
+        <p>Check-in 30 min antes con DNI: el barco sale puntual. Parking muy limitado en agosto — reservad la lanzadera gratuita de la naviera o llegad con margen.</p>
+      </div>
+    </div>
+
+    <div class="paso destacado">
+      <span class="hora">11:00</span>
+      <span class="nodo"><span class="punto"></span></span>
+      <div>
+        <h3>Catamarán por los Cañones del Sil</h3>
+        <p>1h30 de navegación entre paredes de 300 m y viñedos imposibles. Chaqueta fina: a bordo la sensación térmica baja hasta 10°.</p>
+      </div>
+    </div>
+
+    <div class="paso">
+      <span class="hora">13:15</span>
+      <span class="nodo"><span class="punto"></span></span>
+      <div>
+        <h3>Castro Caldelas</h3>
+        <p>Pueblo medieval con castillo de los condes de Lemos, a 15 min subiendo desde Abeleda.</p>
+        <span class="comer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20c6-2 10-6 12-12M8 16c4-1 7-4 8-8"/></svg>Carne ao caldeiro o pulpo á feira</span>
+      </div>
+    </div>
+
+    <div class="paso">
+      <span class="hora">16:30</span>
+      <span class="nodo"><span class="punto"></span></span>
+      <div>
+        <h3>Balcóns de Madrid</h3>
+        <p>Parada de Sil: 5 min a pie desde el parking y el vértigo más bonito del viaje. Opcional: Mosteiro de Santa Cristina, escondido en un souto de castaños.</p>
+      </div>
+    </div>
+
+    <div class="paso">
+      <span class="hora">18:00</span>
+      <span class="nodo"><span class="punto"></span></span>
+      <div>
+        <h3>Santo Estevo de Ribas de Sil</h3>
+        <p>Monasterio-Parador con tres claustros, entrada libre. De camino, parada en el Miradoiro de Cabezoás. Café en la terraza del claustro.</p>
+      </div>
+    </div>
+
+    <div class="paso">
+      <span class="hora">19:30</span>
+      <span class="nodo"><span class="punto"></span></span>
+      <div>
+        <h3>Monforte de Lemos</h3>
+        <p>Torre da Homenaxe, Ponte Vella y cena. Vuelta a Carballedo en 40 min.</p>
+        <span class="comer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20c6-2 10-6 12-12M8 16c4-1 7-4 8-8"/></svg>Parrilladas y chuletón de rubia gallega en el casco viejo</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="franja">
+    <h4>No olvidar</h4>
+    <ul>
+      <li>Billetes del catamarán + DNI de todos · canjear en taquilla</li>
+      <li>Lanzadera de Abeleda reservada (o llegar 45 min antes)</li>
+      <li>Chaqueta fina, agua y gorra · los miradores pegan fuerte en agosto</li>
+      <li>Repostar en Monforte o Chantada antes de entrar al cañón</li>
+    </ul>
+  </div>
+
+  <footer>
+    <span class="marca">Ribeira Sacra <span>·</span> 21–22 agosto 2026</span>
+    <span class="mono">Etapa siguiente → Rías Baixas</span>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galicia 2026 · Del cañón al Atlántico</title>
+<meta name="description" content="Itinerario completo: Ribeira Sacra (21–22 ago) y Rías Baixas (23–27 ago). Cultura, miradores, furanchos y buenas carnes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Karla:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pizarra:#23282B; --pizarra-2:#2E3437;
+    --atlantico:#12333E; --atlantico-2:#183F4C;
+    --papel:#EDEEE8; --tinta:#22282A;
+    --mencia:#5E1B2B; --mencia-claro:#8A3247;
+    --albarino:#B98F1F; --marisco:#B04A30; --laurel:#4C6B4F;
+    --linea:rgba(34,40,42,.16);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Karla',sans-serif;background:var(--papel);color:var(--tinta);line-height:1.6}
+  img{max-width:100%}
+  a{color:inherit}
+
+  /* ---------- Nav ---------- */
+  nav{position:sticky;top:0;z-index:50;background:rgba(237,238,232,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--linea)}
+  .nav-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:20px;padding:12px 20px;overflow-x:auto}
+  .nav-in .logo{font-family:'Marcellus',serif;font-size:17px;white-space:nowrap}
+  .nav-in .logo em{font-style:normal;color:var(--mencia-claro)}
+  .nav-links{display:flex;gap:18px;margin-left:auto}
+  .nav-links a{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;white-space:nowrap;opacity:.75}
+  .nav-links a:hover,.nav-links a:focus-visible{opacity:1;color:var(--mencia)}
+
+  /* ---------- Hero ---------- */
+  .hero{background:var(--pizarra);color:var(--papel);position:relative;overflow:hidden}
+  .hero svg.fondo{position:absolute;inset:0;width:100%;height:100%;opacity:.18}
+  .hero-in{max-width:1080px;margin:0 auto;padding:88px 20px 72px;position:relative}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--albarino)}
+  .hero h1{font-family:'Marcellus',serif;font-weight:400;font-size:clamp(40px,7.5vw,76px);line-height:1.02;margin-top:16px;max-width:14ch}
+  .hero p.intro{margin-top:20px;font-size:17px;max-width:56ch;color:rgba(237,238,232,.8)}
+  .hero .etapas{margin-top:36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;max-width:720px}
+  .etapa-card{border:1px solid rgba(237,238,232,.28);padding:18px 20px;text-decoration:none;display:block;transition:border-color .2s, transform .2s}
+  .etapa-card:hover{border-color:var(--albarino);transform:translateY(-2px)}
+  .etapa-card .mono{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--albarino)}
+  .etapa-card strong{display:block;font-family:'Marcellus',serif;font-weight:400;font-size:22px;margin-top:6px}
+  .etapa-card span.det{display:block;font-size:13.5px;color:rgba(237,238,232,.7);margin-top:4px}
+
+  /* ---------- Secciones ---------- */
+  section.bloque{max-width:1080px;margin:0 auto;padding:72px 20px 8px}
+  .bloque-cab{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:2px solid var(--tinta);padding-bottom:14px;margin-bottom:8px}
+  .bloque-cab h2{font-family:'Marcellus',serif;font-weight:400;font-size:clamp(28px,4.5vw,40px)}
+  .bloque-cab .mono{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.6}
+  .bloque-cab.rb h2, .rb-accent{color:var(--atlantico)}
+  .bloque-cab.rs h2{color:var(--mencia)}
+  .bloque p.lede{font-size:16.5px;max-width:70ch;margin:16px 0 10px}
+
+  /* Día */
+  .dia{padding:34px 0 10px;border-bottom:1px solid var(--linea)}
+  .dia:last-of-type{border-bottom:none}
+  .dia-cab{display:flex;align-items:baseline;gap:14px;margin-bottom:10px}
+  .dia-num{font-family:'Marcellus',serif;font-size:40px;line-height:1;color:var(--mencia-claro)}
+  .rb .dia-num{color:var(--albarino)}
+  .dia-cab h3{font-family:'Marcellus',serif;font-weight:400;font-size:23px}
+  .dia-cab .mono{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.55;display:block;margin-top:2px}
+
+  .paso{display:grid;grid-template-columns:64px 1fr;gap:4px 18px;padding:12px 0}
+  .paso + .paso{border-top:1px dashed var(--linea)}
+  .hora{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;color:var(--mencia);padding-top:3px}
+  .rb .hora{color:#166578}
+  .paso h4{font-size:16.5px;font-weight:700}
+  .paso .desc{font-size:14.5px;opacity:.85;max-width:66ch}
+  .tag{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--marisco);padding:2px 7px;margin-left:8px;position:relative;top:-2px;white-space:nowrap}
+  .tag.oro{background:var(--albarino);color:var(--tinta)}
+
+  /* Cultura: acordeones */
+  details.cultura{margin:8px 0 8px 82px;border-left:3px solid var(--mencia-claro);background:rgba(94,27,43,.05)}
+  .rb details.cultura{border-left-color:var(--atlantico-2);background:rgba(24,63,76,.06)}
+  details.cultura summary{cursor:pointer;padding:10px 14px;font-size:13.5px;font-weight:700;list-style:none;display:flex;align-items:center;gap:8px}
+  details.cultura summary::before{content:"+";font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--mencia-claro)}
+  .rb details.cultura summary::before{color:#166578}
+  details.cultura[open] summary::before{content:"–"}
+  details.cultura .cuerpo{padding:0 16px 14px;font-size:14px;max-width:68ch;opacity:.9}
+  details.cultura .cuerpo p+p{margin-top:8px}
+
+  .comer-linea{display:flex;align-items:flex-start;gap:8px;margin-top:6px;font-size:13.5px;color:var(--laurel);font-weight:600}
+  .comer-linea svg{flex:none;margin-top:3px}
+
+  /* Avisos */
+  .aviso{margin:26px 0;padding:20px 22px;background:var(--pizarra);color:var(--papel)}
+  .aviso.rb-a{background:var(--atlantico)}
+  .aviso h4{font-family:'Marcellus',serif;font-weight:400;font-size:19px;margin-bottom:8px;color:var(--albarino)}
+  .aviso ul{list-style:none}
+  .aviso li{padding-left:18px;position:relative;font-size:14px;line-height:1.65}
+  .aviso li::before{content:"—";position:absolute;left:0;color:var(--albarino)}
+
+  /* ---------- Comer ---------- */
+  #comer{background:#E4E7E0;margin-top:64px}
+  #comer .bloque{padding-top:64px}
+  .comer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin:26px 0 30px}
+  .ficha{background:var(--papel);border:1px solid var(--linea);padding:24px}
+  .ficha.laurel-top{border-top:4px solid var(--laurel)}
+  .ficha.carne-top{border-top:4px solid var(--mencia)}
+  .ficha h3{font-family:'Marcellus',serif;font-weight:400;font-size:22px;display:flex;align-items:center;gap:10px}
+  .ficha .mono{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.55;display:block;margin:4px 0 12px}
+  .ficha p{font-size:14.5px}
+  .lista-sitios{list-style:none;margin-top:14px}
+  .lista-sitios li{padding:10px 0;border-top:1px dashed var(--linea);font-size:14px}
+  .lista-sitios li strong{display:block;font-size:15px}
+  .lista-sitios li .mono2{font-family:'IBM Plex Mono',monospace;font-size:12px;opacity:.7}
+  .nota-temporada{background:var(--laurel);color:#F0F3EE;padding:20px 22px;margin-top:6px}
+  .nota-temporada strong{color:#DCC77A}
+
+  /* ---------- Reservas ---------- */
+  .check-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:24px 0 40px}
+  .check{border:1px solid var(--linea);background:#fff;padding:18px}
+  .check .mono{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--marisco)}
+  .check strong{display:block;margin-top:6px;font-size:15.5px}
+  .check span{font-size:13.5px;opacity:.8;display:block;margin-top:4px}
+
+  /* ---------- Infografías ---------- */
+  .infos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:22px 0 48px}
+  .info-link{display:block;text-decoration:none;padding:26px 24px;color:var(--papel);transition:transform .2s}
+  .info-link:hover{transform:translateY(-3px)}
+  .info-link.rs-i{background:var(--pizarra)}
+  .info-link.rb-i{background:var(--atlantico)}
+  .info-link .mono{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--albarino)}
+  .info-link strong{display:block;font-family:'Marcellus',serif;font-weight:400;font-size:24px;margin-top:8px}
+  .info-link span{display:block;font-size:13.5px;opacity:.75;margin-top:6px}
+
+  footer.pie{background:var(--tinta);color:rgba(237,238,232,.75);margin-top:40px}
+  .pie-in{max-width:1080px;margin:0 auto;padding:36px 20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13.5px}
+  .pie-in .marca{font-family:'Marcellus',serif;font-size:16px;color:var(--papel)}
+  .pie-in .marca em{font-style:normal;color:var(--albarino)}
+
+  @media (max-width:640px){
+    .paso{grid-template-columns:56px 1fr;gap:2px 12px}
+    details.cultura{margin-left:0}
+    .hero-in{padding:64px 20px 56px}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .etapa-card,.info-link{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<nav aria-label="principal">
+  <div class="nav-in">
+    <span class="logo">Galicia <em>2026</em></span>
+    <div class="nav-links">
+      <a href="#ribeira-sacra">Ribeira Sacra</a>
+      <a href="#rias-baixas">Rías Baixas</a>
+      <a href="#comer">Dónde comer</a>
+      <a href="#reservas">Reservas</a>
+      <a href="#infografias">Infografías</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="fondo" viewBox="0 0 1200 420" preserveAspectRatio="none" aria-hidden="true">
+    <g fill="none" stroke="#8A3247" stroke-width="1.2">
+      <path d="M-10,360 C220,300 380,390 620,330 C860,272 1020,368 1210,300"/>
+      <path d="M-10,310 C230,254 400,336 640,280 C875,228 1035,314 1210,252"/>
+      <path d="M-10,262 C245,210 415,284 660,234 C890,188 1050,262 1210,208"/>
+    </g>
+    <g fill="none" stroke="#C39A24" stroke-width="1" opacity=".8">
+      <path d="M-10,180 q40,-14 80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0"/>
+      <path d="M-50,150 q40,-14 80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0 t80,0"/>
+    </g>
+  </svg>
+  <div class="hero-in">
+    <p class="eyebrow">21 – 27 de agosto de 2026 · 7 días</p>
+    <h1>Del cañón del Sil al Atlántico</h1>
+    <p class="intro">Dos días de viñedos heroicos y monasterios en la Ribeira Sacra, y cinco de islas, bateas, albariño y furanchos en las Rías Baixas. Todo el itinerario, la cultura de cada parada y dónde comer de verdad.</p>
+    <div class="etapas">
+      <a class="etapa-card" href="#ribeira-sacra">
+        <span class="mono">Etapa 1 · 21–22 ago</span>
+        <strong>Ribeira Sacra</strong>
+        <span class="det">Base: Carballedo (Lugo) · catamarán desde Abeleda</span>
+      </a>
+      <a class="etapa-card" href="#rias-baixas">
+        <span class="mono">Etapa 2 · 23–27 ago</span>
+        <strong>Rías Baixas</strong>
+        <span class="det">Base: Combarro (Poio) · Ons, Salnés, Morrazo y Baixo Miño</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ RIBEIRA SACRA ============ -->
+<section class="bloque" id="ribeira-sacra">
+  <div class="bloque-cab rs">
+    <h2>Ribeira Sacra</h2>
+    <span class="mono">Viernes 21 – sábado 22 · base en Carballedo</span>
+  </div>
+  <p class="lede">La «ribera sagrada»: la mayor concentración de monasterios medievales de Europa, colgados sobre los cañones del Sil y el Miño. Aquí los monjes plantaron hace siglos los viñedos en socalcos (terrazas) que hoy dan la D.O. Ribeira Sacra y su uva reina, la mencía. Lo llaman viticultura heroica: pendientes de hasta el 80 % que aún se vendimian a mano.</p>
+
+  <!-- Día 21 -->
+  <article class="dia">
+    <div class="dia-cab">
+      <span class="dia-num">21</span>
+      <div><h3>Miño, viñedos y monasterios</h3><span class="mono">Viernes · llegada · check-in 16:00</span></div>
+    </div>
+
+    <div class="paso">
+      <span class="hora">~12:00</span>
+      <div>
+        <h4>Mosteiro de Santa María de Oseira</h4>
+        <p class="desc">A 20 min de Carballedo, perfecto mientras esperáis el apartamento. Pase guiado de mañana (llegar antes de las 12:30) o de tarde (~15:30).</p>
+        <p class="comer-linea"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20c6-2 10-6 12-12M8 16c4-1 7-4 8-8"/></svg>Comida en Cea: mesones de cocina casera y el pan de Cea, el único pan de España con Indicación Xeográfica Protexida propia. Comprad una bola para el viaje.</p>
+      </div>
+    </div>
+    <details class="cultura">
+      <summary>Por qué lo llaman el Escorial gallego</summary>
+      <div class="cuerpo">
+        <p>Fundado en 1137, Oseira es uno de los grandes monasterios cistercienses de la península: iglesia románica de proporciones catedralicias, tres claustros y una sala capitular del siglo XV con columnas torsas que parecen palmeras de piedra. Tras la desamortización quedó en ruina y fue repoblado por monjes en 1929; hoy sigue habitado y son ellos quienes guían la visita.</p>
+        <p>El nombre viene de los osos («ursaria») que poblaban estos montes. Fijaos en la fuente del claustro y en la botica antigua.</p>
+      </div>
+    </details>
+
+    <div class="paso">
+      <span class="hora">16:00</span>
+      <div><h4>Check-in en Carballedo <span class="tag oro">Casa</span></h4><p class="desc">Entrada al apartamento y descanso.</p></div>
+    </div>
+
+    <div class="paso">
+      <span class="hora">18:00</span>
+      <div>
+        <h4>Miradoiro do Cabo do Mundo</h4>
+        <p class="desc">A ~25 min: el meandro del Miño más famoso, con los viñedos en anfiteatro. La luz de última tarde es la buena.</p>
+      </div>
+    </div>
+    <details class="cultura">
+      <summary>El «fin del mundo» del Miño y San Estevo de Ribas de Miño</summary>
+      <div class="cuerpo">
+        <p>El río gira aquí tan cerrado que los vecinos llamaron al lugar «cabo do mundo»: parece que la tierra se acaba. A pocos minutos, la iglesia de San Estevo de Ribas de Miño (s. XII–XIII, Monumento Nacional) cuelga literalmente de la ladera: su rosetón y su portada son de lo mejor del románico del Miño, herederas del taller del Maestro Mateo, el del Pórtico de la Gloria.</p>
+      </div>
+    </details>
+
+    <div class="paso">
+      <span class="hora">19:15</span>
+      <div>
+        <h4>Presa y socalcos de Belesar</h4>
+        <p class="desc">Bajad a la presa: terrazas de viñedo cayendo al agua a ambos lados. Con reserva previa, alguna bodega de la zona ofrece visita y cata de mencía.</p>
+      </div>
+    </div>
+    <details class="cultura">
+      <summary>Los socalcos y el pueblo bajo el agua</summary>
+      <div class="cuerpo">
+        <p>Las terrazas de piedra seca se empezaron a construir en época romana y las perfeccionaron los monasterios medievales. El embalse de Belesar (1963) anegó el antiguo pueblo y sus huertas; cuando el nivel baja mucho, asoman los restos. Los «barcos de línea» que subían el vino a Os Peares desaparecieron con la presa: hoy el catamarán es su heredero turístico.</p>
+      </div>
+    </details>
+
+    <div class="paso">
+      <span class="hora">21:00</span>
+      <div>
+        <h4>Cena en Chantada</h4>
+        <p class="comer-linea"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20c6-2 10-6 12-12M8 16c4-1 7-4 8-8"/></svg>Zona de buenas parrillas: ternera gallega suprema a la brasa, churrasco y mencía de la casa. A 15 min del apartamento.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- Día 22 -->
+  <article class="dia">
+    <div class="dia-cab">
+      <span class="dia-num">22</span>
+      <div><h3>Cañón del Sil</h3><span class="mono">Sábado · catamarán 11:00 desde Abeleda</span></div>
+    </div>
+
+    <div class="paso">
+      <span class="hora">8:40</span>
+      <div><h4>Salida hacia Abeleda</h4>
+      <p class="desc">Vía Monforte y la LU-903 bajando a Doade (~1h15). Depósito lleno: dentro del cañón no hay gasolineras.</p></div>
+    </div>
+
+    <div class="paso">
+      <span class="hora">9:50</span>
+      <div><h4>Miradoiro da Cividade</h4>
+      <p class="desc">Os pilla de camino: 10 minutos para ver desde arriba, con luz de mañana, el tramo exacto que vais a navegar.</p></div>
+    </div>
+
+    <div class="paso">
+      <span class="hora">10:15</span>
+      <div><h4>Embarcadoiro de Abeleda <span class="tag">Reserva</span></h4>
+      <p class="desc">Orilla ourensana, municipio de Castro Caldelas. Check-in 30 min antes con DNI: el barco sale puntual y no espera. En agosto el parking es muy limitado: reservad la lanzadera gratuita de la naviera o llegad con 45 min de margen.</p></div>
+    </div>
+
+    <div class="paso">
+      <span class="hora">11:00</span>
+      <div><h4>Catamarán por los Cañones del Sil · 1h30</h4>
+      <p class="desc">Navegación entre paredes de hasta 300 m. Llevad chaqueta fina: la sensación térmica a bordo puede bajar hasta 10 grados incluso en agosto.</p></div>
+    </div>
+    <details class="cultura">
+      <summary>Qué estáis viendo desde el agua</summary>
+      <div class="cuerpo">
+        <p>El Sil excavó este tajo en granito durante millones de años; los romanos ya plantaron vid en sus laderas (lo llamaban el oro líquido del Sil, junto al oro de verdad que bateaban río arriba). En la solana de Doade veréis los socalcos de la subzona Amandi, la más prestigiosa de la D.O.: vendimia a mano, uva a la espalda o en pequeños raíles cremallera que trepan la pendiente.</p>
+        <p>Fijaos también en el contraste de vegetación: ladera de umbría atlántica (robles, castaños) frente a solana casi mediterránea (madroños, alcornoques). Un microclima dentro de Galicia.</p>
+      </div>
+    </details>
+
+    <div class="paso">
+      <span class="hora">13:15</span>
+      <div><h4>Castro Caldelas</h4>
+      <p class="desc">A 15 min subiendo desde el embarcadero. Castillo, calles empedradas y balcones de madera.</p>
+      <p class="comer-linea"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20c6-2 10-6 12-12M8 16c4-1 7-4 8-8"/></svg>Comida de cuchara y brasa: carne ao caldeiro, pulpo á feira, bica de postre.</p></div>
+    </div>
+    <details class="cultura">
+      <summary>El castillo de los condes de Lemos</summary>
+      <div class="cuerpo">
+        <p>Fortaleza del s. XIV de la casa de Lemos, asaltada en la revuelta Irmandiña (1467), cuando los campesinos gallegos derribaron medio centenar de castillos señoriales. Se puede subir a las almenas: vistas de todo el valle. En el pueblo, la iglesia de los Remedios guarda un retablo barroco notable.</p>
+      </div>
+    </details>
+
+    <div class="paso">
+      <span class="hora">16:30</span>
+      <div><h4>Balcóns de Madrid</h4>
+      <p class="desc">Parada de Sil. Desde el parking, 5 min a pie hasta las plataformas sobre el vacío: el mirador más espectacular del cañón. Opcional: bajar al Mosteiro de Santa Cristina (20 min a pie entre castaños centenarios).</p></div>
+    </div>
+    <details class="cultura">
+      <summary>Por qué se llaman «de Madrid»</summary>
+      <div class="cuerpo">
+        <p>Desde estos salientes las mujeres de Parada de Sil despedían a los hombres que marchaban a Madrid a trabajar de afiladores, castañeros o aguadores: los veían alejarse por el camino del fondo del cañón hasta perderse. El nombre quedó.</p>
+        <p>Santa Cristina de Ribas de Sil (s. XII) es el monasterio más romántico de todos: diminuto, en ruina parcial, tragado por un souto de castaños. Si os queda cuerda, merece cada paso.</p>
+      </div>
+    </details>
+
+    <div class="paso">
+      <span class="hora">18:00</span>
+      <div><h4>Santo Estevo de Ribas de Sil + Cabezoás</h4>
+      <p class="desc">Parada rápida en el Miradoiro de Cabezoás y visita al gran monasterio, hoy Parador: entrada libre a los claustros. Café en su terraza.</p></div>
+    </div>
+    <details class="cultura">
+      <summary>Los nueve anillos y los tres claustros</summary>
+      <div class="cuerpo">
+        <p>Santo Estevo es el monasterio mayor de la Ribeira Sacra. La leyenda cuenta que nueve obispos se retiraron aquí entre los siglos X y XI y que sus nueve anillos, guardados como reliquia, obraban milagros: aún presiden el escudo del monasterio. Conserva tres claustros de tres épocas (románico, gótico-renacentista y barroco) — recorrerlos es un curso de arquitectura en media hora.</p>
+      </div>
+    </details>
+
+    <div class="paso">
+      <span class="hora">19:30</span>
+      <div><h4>Monforte de Lemos</h4>
+      <p class="desc">Subida a la Torre da Homenaxe, paseo por la Ponte Vella sobre el Cabe y cena. Vuelta a Carballedo en 40 min.</p>
+      <p class="comer-linea"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20c6-2 10-6 12-12M8 16c4-1 7-4 8-8"/></svg>Ciudad de buen chuletón: parrilladas de rubia gallega en el entorno del casco viejo.</p></div>
+    </div>
+    <details class="cultura">
+      <summary>La capital de la Ribeira Sacra</summary>
+      <div class="cuerpo">
+        <p>Monforte creció al pie del castillo de los condes de Lemos, mecenas de Cervantes (les dedicó la segunda parte del Quijote). Su Colexio do Cardeal, renacentista y enorme, guarda dos Grecos y un Andrea del Sarto. Si vais con tiempo otro día, merece visita.</p>
+      </div>
+    </details>
+  </article>
+
+  <div class="aviso">
+    <h4>Claves de la etapa</h4>
+    <ul>
+      <li>Carreteras estrechas y reviradas: calculad siempre más tiempo del que dice el GPS.</li>
+      <li>Agua y gorra para los miradores: en agosto el sol pega fuerte.</li>
+      <li>Si sobra energía el día 21, la Ponte Romana de Os Peares (confluencia Miño-Sil) queda cerca de casa.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ RÍAS BAIXAS ============ -->
+<section class="bloque rb" id="rias-baixas">
+  <div class="bloque-cab rb">
+    <h2>Rías Baixas</h2>
+    <span class="mono">Domingo 23 – jueves 27 · base en Combarro</span>
+  </div>
+  <p class="lede">Cinco días con base en Combarro para recorrer las tres rías del sur: Arousa (vino y mejillón), Pontevedra (Ons y el Salnés) y Vigo (Morrazo, Baiona y el Baixo Miño). La regla de oro: madrugar poco, navegar mucho y cenar donde cuelgue el laurel.</p>
+
+  <!-- Día 23 -->
+  <article class="dia">
+    <div class="dia-cab"><span class="dia-num">23</span>
+      <div><h3>Pontevedra y Combarro</h3><span class="mono">Domingo · salida de Carballedo 10:00</span></div>
+    </div>
+    <div class="paso"><span class="hora">12:00</span>
+      <div><h4>Pontevedra, casco histórico</h4>
+      <p class="desc">~1h45 de viaje. Ciudad peatonal, ideal para llegar y tapear: Praza da Leña, A Ferrería, A Verdura, santuario de A Peregrina.</p>
+      <p class="comer-linea"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20c6-2 10-6 12-12M8 16c4-1 7-4 8-8"/></svg>Tapeo de plaza en plaza: zamburiñas, raxo, tortilla. Domingo al mediodía hay ambientazo.</p></div>
+    </div>
+    <details class="cultura">
+      <summary>La ciudad que echó a los coches</summary>
+      <div class="cuerpo">
+        <p>Pontevedra peatonalizó su centro hace 25 años y hoy es referencia mundial de urbanismo. Su casco medieval nació del puerto: aquí se construyó, según la tradición, la nao Santa María. A Peregrina, con su planta en forma de vieira, es el símbolo: la Virgen peregrina que guía el Camino Portugués.</p>
+      </div>
+    </details>
+    <div class="paso"><span class="hora">17:00</span>
+      <div><h4>Combarro <span class="tag oro">Casa</span></h4>
+      <p class="desc">Check-in y paseo. Atardecer desde el paseo marítimo, mejor con marea alta.</p></div>
+    </div>
+    <details class="cultura">
+      <summary>Hórreos sobre el mar y cruceiros</summary>
+      <div class="cuerpo">
+        <p>Combarro es Conjunto Histórico: una treintena de hórreos alineados a pie de ría (graneros de piedra elevados para guardar maíz lejos de ratones y humedad, aquí también usados para secar pescado) y cruceiros en cada encrucijada, con la Virgen mirando al mar y el Cristo mirando a tierra. Las casas marineras con patín y soportales completan uno de los conjuntos etnográficos más valiosos de Galicia. En agosto, mejor pasearlo a primera hora o al atardecer, cuando se van los buses.</p>
+      </div>
+    </details>
+  </article>
+
+  <!-- Día 24 -->
+  <article class="dia">
+    <div class="dia-cab"><span class="dia-num">24</span>
+      <div><h3>O Salnés: Cambados, Arousa, O Grove y A Lanzada</h3><span class="mono">Lunes</span></div>
+    </div>
+    <div class="paso"><span class="hora">10:00</span>
+      <div><h4>Cambados</h4>
+      <p class="desc">Capital del albariño: Praza de Fefiñáns con su pazo y bodegas, y las ruinas góticas de Santa Mariña Dozo.</p></div>
+    </div>
+    <details class="cultura">
+      <summary>El vino que salvó una comarca</summary>
+      <div class="cuerpo">
+        <p>La plaza de Fefiñáns (s. XVI–XVII) es de las más elegantes de Galicia; en sus soportales nacieron algunas de las bodegas históricas del albariño. Santa Mariña Dozo, iglesia gótico-marinera sin techo convertida en camposanto, fue declarada por más de un viajero «el cementerio más melancólico del mundo». Cambados celebra la Festa do Albariño justo a principios de agosto: la resaca festiva aún se nota en el ambiente.</p>
+      </div>
+    </details>
+    <div class="paso"><span class="hora">12:00</span>
+      <div><h4>Illa de Arousa</h4>
+      <p class="desc">Se cruza en coche por el puente (casi 2 km). Playas de O Bao y Area da Secada, y el parque natural de Carreirón, con paseos entre pinos y calas.</p>
+      <p class="comer-linea"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20c6-2 10-6 12-12M8 16c4-1 7-4 8-8"/></svg>Aperitivo en el puerto: aquí el mejillón, la navaja y el berberecho vienen de la puerta de al lado.</p></div>
+    </div>
+    <div class="paso"><span class="hora">16:00</span>
+      <div><h4>O Grove: barco a las bateas <span class="tag">Reserva</span></h4>
+      <p class="desc">Vuestros mejillones: travesía por la ría de Arousa entre bateas con explicación del cultivo y degustación de mejillones al vapor con vino a bordo (~16 €). Al bajar, paseo por la isla de A Toxa y su capilla de conchas.</p></div>
+    </div>
+    <details class="cultura">
+      <summary>La batea: la granja marina gallega</summary>
+      <div class="cuerpo">
+        <p>Cada plataforma flotante de eucalipto sostiene cientos de cuerdas de las que cuelgan los mejillones durante meses. Las rías gallegas producen en torno a la mitad del mejillón de Europa gracias al afloramiento: agua fría y cargada de nutrientes que sube del fondo. Por eso el mejillón de aquí sabe distinto. La leyenda de A Toxa: un burro enfermo abandonado en la isla se curó revolcándose en sus lodos termales, y así se descubrió el balneario.</p>
+      </div>
+    </details>
+    <div class="paso"><span class="hora">19:00</span>
+      <div><h4>Praia da Lanzada</h4>
+      <p class="desc">Más de 2 km de arenal abierto al océano. Baño (agua fría, olas) y atardecer junto a la ermita del s. XII, en la punta.</p></div>
+    </div>
+    <details class="cultura">
+      <summary>El rito de las nueve olas</summary>
+      <div class="cuerpo">
+        <p>Junto a la ermita de Nosa Señora da Lanzada sobreviven restos de un castro y una necrópolis: este cabo lleva 2.500 años siendo lugar sagrado. El rito pagano-cristiano más famoso de Galicia se celebra aquí a final de agosto: las mujeres que buscan fertilidad se bañan de noche dejando pasar nueve olas sobre su vientre.</p>
+      </div>
+    </details>
+    <div class="paso"><span class="hora">21:00</span>
+      <div><h4>Cena furanchera en Covas (Meaño)</h4>
+      <p class="desc">Vuelta por Sanxenxo y Raxó (parada para un vermut si apetece) y cena en la milla de oro del furancho. Ver la guía de comer más abajo.</p></div>
+    </div>
+  </article>
+
+  <!-- Día 25 -->
+  <article class="dia">
+    <div class="dia-cab"><span class="dia-num">25</span>
+      <div><h3>Illas Ons y Costa da Vela</h3><span class="mono">Martes · probablemente el día más bonito</span></div>
+    </div>
+    <div class="paso"><span class="hora">9:30</span>
+      <div><h4>Barco a Ons desde Bueu <span class="tag">Reserva</span></h4>
+      <p class="desc">La travesía más corta (~45 min). Dos gestiones previas: autorización gratuita del Parque Nacional Illas Atlánticas (web de la Xunta) y billete de barco. En agosto vuelan.</p>
+      <p class="comer-linea"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20c6-2 10-6 12-12M8 16c4-1 7-4 8-8"/></svg>En la isla: pulpo á illa (con aceite y cebolla cruda) en las casas de comidas del pueblo, Casa Checho o Acuña.</p></div>
+    </div>
+    <details class="cultura">
+      <summary>La isla habitada del Parque Nacional</summary>
+      <div class="cuerpo">
+        <p>A diferencia de las Cíes, Ons mantiene un pequeño pueblo vivo: hasta hace poco tuvo escuela, y sus vecinos conservan la dorna, la barca tradicional de vela. Ruta fácil: pueblo → playa de Melide (arena blanca, aguas turquesas) → Buraco do Inferno, una sima marina donde según la tradición se oían las voces de los ahogados → mirador de Fedorentos, con las Cíes enfrente.</p>
+      </div>
+    </details>
+    <div class="paso"><span class="hora">17:30</span>
+      <div><h4>Ría de Aldán</h4>
+      <p class="desc">De vuelta en Bueu, la pequeña ría escondida del Morrazo: calas de Area Brava y Menduíña.</p>
+      <p class="comer-linea"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20c6-2 10-6 12-12M8 16c4-1 7-4 8-8"/></svg>Percebes o mariscada en el puerto de Aldán.</p></div>
+    </div>
+    <div class="paso"><span class="hora">19:30</span>
+      <div><h4>Hío y Faro de Cabo Home</h4>
+      <p class="desc">Parada en el cruceiro de Hío y paseo entre los tres faros de la Costa da Vela con las Cíes enfrente. El mejor atardecer del viaje; playas de Melide y Barra al lado.</p></div>
+    </div>
+    <details class="cultura">
+      <summary>El cruceiro de Hío y la Costa da Vela</summary>
+      <div class="cuerpo">
+        <p>El cruceiro de Hío (1872) es el más célebre de Galicia: un Descendimiento completo tallado en una sola pieza de granito por José Cerviño. Cabo Home es el punto peninsular más cercano a las Cíes: acantilados, tres faros y el Monte Facho arriba, con un santuario galaico-romano al dios Berobreo donde se han hallado más de cien aras votivas.</p>
+      </div>
+    </details>
+  </article>
+
+  <!-- Día 26 -->
+  <article class="dia">
+    <div class="dia-cab"><span class="dia-num">26</span>
+      <div><h3>Baiona, ruta de Oia, A Guarda y el Miño</h3><span class="mono">Miércoles · la costa sur</span></div>
+    </div>
+    <div class="paso"><span class="hora">10:00</span>
+      <div><h4>Baiona</h4>
+      <p class="desc">Paseo por la muralla de Monterreal (hoy Parador) y visita a la réplica de la carabela Pinta en el puerto.</p></div>
+    </div>
+    <details class="cultura">
+      <summary>El puerto que supo antes que nadie que existía América</summary>
+      <div class="cuerpo">
+        <p>El 1 de marzo de 1493 la Pinta, capitaneada por Martín Alonso Pinzón, entró en Baiona de arribada tras las tormentas del regreso: fue el primer puerto de Europa en conocer el Descubrimiento, días antes de que Colón llegara a Lisboa. La villa lo celebra cada marzo con la Festa da Arribada. La réplica de la carabela se visita por dentro: impresiona lo pequeña que era.</p>
+      </div>
+    </details>
+    <div class="paso"><span class="hora">12:30</span>
+      <div><h4>Ruta de Oia (PO-552)</h4>
+      <p class="desc">La carretera costera Baiona–A Guarda: océano abierto, aldeas de pescadores y el monasterio de Santa María de Oia a pie de mar.</p></div>
+    </div>
+    <details class="cultura">
+      <summary>El monasterio que disparaba cañonazos</summary>
+      <div class="cuerpo">
+        <p>Oia es el único monasterio cisterciense de España construido literalmente sobre el mar. Sus monjes llegaron a artillar la fachada: en 1624 rechazaron a cañonazos un ataque de naves turcas, y el rey les dio el título de «Real». En los montes de arriba viven manadas de caballos salvajes: cada primavera se celebra el curro, la rapa tradicional. La zona está sembrada de petroglifos de la Edad del Bronce.</p>
+      </div>
+    </details>
+    <div class="paso"><span class="hora">14:00</span>
+      <div><h4>A Guarda + Monte de Santa Trega</h4>
+      <p class="desc">Comida en el puerto y subida en coche al monte.</p>
+      <p class="comer-linea"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20c6-2 10-6 12-12M8 16c4-1 7-4 8-8"/></svg>A Guarda es capital de la langosta: arroz con bogavante o langosta de la ría en las marisquerías del puerto.</p></div>
+    </div>
+    <details class="cultura">
+      <summary>Un poblado celta asomado a dos países</summary>
+      <div class="cuerpo">
+        <p>El castro de Santa Trega (s. I a.C. – I d.C.) es el poblado galaico más visitado: cientos de viviendas circulares excavadas en la ladera, dos reconstruidas con su techo de colmo. Arriba, la vista lo explica todo: la desembocadura del Miño, el monte portugués de Santa Tecla enfrente y el Atlántico infinito. Hay museo con las piezas halladas.</p>
+      </div>
+    </details>
+    <div class="paso"><span class="hora">18:00</span>
+      <div><h4>Tui y Salvaterra de Miño</h4>
+      <p class="desc">Vuelta por el interior: parada en la catedral-fortaleza de Tui y en las murallas de Salvaterra sobre el Miño, corazón del Condado do Tea (albariño y treixadura). Regreso a Combarro en ~1h por autovía.</p></div>
+    </div>
+    <details class="cultura">
+      <summary>La raia: la frontera del vino</summary>
+      <div class="cuerpo">
+        <p>Tui fue capital de provincia y su catedral (s. XII–XIII) es mitad templo, mitad castillo: la primera portada gótica de la península. Salvaterra, plaza fuerte frente a la portuguesa Monção, cambió de manos entre coronas durante siglos; hoy sus murallas guardan bodegas y un paseo sobre el río. Es la subzona del Condado, la otra gran cuna del albariño junto al Salnés.</p>
+      </div>
+    </details>
+  </article>
+
+  <!-- Día 27 -->
+  <article class="dia">
+    <div class="dia-cab"><span class="dia-num">27</span>
+      <div><h3>Vigo y Cangas en barco</h3><span class="mono">Jueves · día sin apenas coche</span></div>
+    </div>
+    <div class="paso"><span class="hora">10:30</span>
+      <div><h4>Vigo, Casco Vello</h4>
+      <p class="desc">Aparcad cerca del puerto y callejead el barrio viejo hasta la Porta do Sol y el Dinoseto.</p>
+      <p class="comer-linea"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20c6-2 10-6 12-12M8 16c4-1 7-4 8-8"/></svg>Rúa Pescadería, «la calle de las ostras»: las ostreiras las abren delante de vosotros. Se toman a media mañana con albariño, como manda la tradición viguesa.</p></div>
+    </div>
+    <div class="paso"><span class="hora">13:00</span>
+      <div><h4>Ferry Vigo → Cangas</h4>
+      <p class="desc">15–20 minutos de travesía por la ría, salidas cada media hora, sin reserva. La mejor vista de Vigo es desde el agua.</p></div>
+    </div>
+    <div class="paso"><span class="hora">14:00</span>
+      <div><h4>Cangas do Morrazo</h4>
+      <p class="desc">Comida marinera en el puerto y tarde de playa: Rodeira a 5 min andando; Nerga o Barra en taxi si queréis arena salvaje mirando a las Cíes. Ferry de vuelta, coche y cena de despedida en Combarro.</p></div>
+    </div>
+    <details class="cultura">
+      <summary>Cangas: piratas y la vila rebelde</summary>
+      <div class="cuerpo">
+        <p>En 1617 una flota de corsarios berberiscos saqueó Cangas durante días: el trauma alimentó la leyenda de María Soliño, acusada después de bruja por la Inquisición y convertida en símbolo de las mujeres del mar. La colexiata gótico-marinera y el paseo del puerto guardan esa memoria. El ferry Vigo–Cangas lleva más de un siglo cosiendo las dos orillas: para los locales es un autobús que flota.</p>
+      </div>
+    </details>
+  </article>
+
+  <div class="aviso rb-a">
+    <h4>Lo que descartamos (con cabeza)</h4>
+    <ul>
+      <li>Noia, Muros y la playa de As Furnas: ría de Muros-Noia, a casi 2 h en dirección contraria. Para un próximo viaje con base en Santiago.</li>
+      <li>Isla de Sálvora: barcos muy limitados. Con Ons ya tenéis isla atlántica; si repetís, hay excursiones desde O Grove.</li>
+      <li>Meaño, Raxó y Sanxenxo quedan integrados en el día 24; Aldán y Cangas, en el 25 y el 27.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ COMER ============ -->
+<div id="comer">
+<section class="bloque">
+  <div class="bloque-cab">
+    <h2>Dónde comer</h2>
+    <span class="mono">Furanchos auténticos · buenas carnes</span>
+  </div>
+
+  <div class="nota-temporada">
+    <strong>La verdad del furancho en agosto:</strong> el furancho puro es una casa particular que vende el excedente de vino de la cosecha; la ley solo permite abrir entre diciembre y junio (máx. 3 meses por casa), señalándose con una <strong>rama de laurel en la puerta</strong>. En agosto los estrictamente legales están cerrados — pero en Meaño, cuna de la tradición, varios funcionan todo el año como casas de comidas manteniendo nombre, garaje, parra y espíritu. Son la opción más auténtica posible en estas fechas. <strong>Llamad siempre antes.</strong>
+  </div>
+
+  <div class="comer-grid">
+    <div class="ficha laurel-top">
+      <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4C6B4F" stroke-width="2"><path d="M4 20c6-2 10-6 12-12M8 16c4-1 7-4 8-8"/></svg>Furanchos · zona de Covas (Meaño)</h3>
+      <span class="mono">A 20 min de Combarro · perfectos para la cena del día 24</span>
+      <p>Qué pedir: el vino de la casa (sin carta de vinos: ese es el punto), zorza, tortilla, oreja á feira, calamares, empanada de millo. Mesas corridas, precios de otra época.</p>
+      <ul class="lista-sitios">
+        <li><strong>Furancho Juan</strong>Aldea de Abaixo 14, Meaño <span class="mono2">· 986 74 73 14</span></li>
+        <li><strong>O Lar de Outeiro</strong>Outeiro 9A, Meaño <span class="mono2">· 600 830 938</span></li>
+        <li><strong>O Furancho Ángel</strong>Aldea de Abaixo 9, Meaño <span class="mono2">· 670 51 85 77</span></li>
+        <li><strong>A Casa Pequena</strong>Paradela, Lores (Meaño) <span class="mono2">· 655 96 18 66</span></li>
+        <li><strong>Furancho do Laranxo</strong>Aios 123, Noalla (Sanxenxo) — reservar; difícil aparcar <span class="mono2">· terraza bajo parra</span></li>
+      </ul>
+      <p style="margin-top:12px;font-size:13px;opacity:.75">Ojo: Loureiro Miniño (Bordóns, Sanxenxo) suele cerrar en agosto. Confirmad apertura de todos por teléfono: la lista cambia cada temporada.</p>
+    </div>
+
+    <div class="ficha carne-top">
+      <h3>Buenas carnes, etapa a etapa</h3>
+      <span class="mono">Ternera gallega · rubia gallega · brasa</span>
+      <p>Galicia interior es tierra de vacuno serio. La pista fiable: buscar «parrillada» o «grella» y preguntar si la carne es Ternera Gallega Suprema o rubia gallega con maduración.</p>
+      <ul class="lista-sitios">
+        <li><strong>Chantada y Monforte (días 21–22)</strong>Parrilladas de chuletón y churrasco con mencía de la casa: las dos capitales carnívoras de vuestra etapa lucense.</li>
+        <li><strong>Castro Caldelas (día 22)</strong>Carne ao caldeiro: falda de ternera cocida con unto, cachelos y pimentón. El plato de feria por excelencia.</li>
+        <li><strong>Cea (día 21)</strong>Mesones de cocina de aldea + pan de Cea para mojar. Salid con una bola en el maletero.</li>
+        <li><strong>Rías Baixas</strong>Entre mariscada y mariscada: raxo, zorza y churrasco con criollo en cualquier casa de comidas — y en los propios furanchos.</li>
+      </ul>
+    </div>
+
+    <div class="ficha">
+      <h3>Del mar, lo que toca en cada puerto</h3>
+      <span class="mono">Cada ría tiene su especialidad</span>
+      <ul class="lista-sitios">
+        <li><strong>O Grove</strong>Mejillón de batea (en el barco) y marisco de la lonja: es la «capital del marisco».</li>
+        <li><strong>Illa de Arousa</strong>Navajas y berberechos al vapor en los bares del puerto.</li>
+        <li><strong>Ons</strong>Pulpo á illa, la versión isleña con cebolla cruda.</li>
+        <li><strong>Aldán</strong>Percebes de la Costa da Vela.</li>
+        <li><strong>A Guarda</strong>Langosta y arroz con bogavante: su flota es la langostera por excelencia.</li>
+        <li><strong>Vigo</strong>Ostras de la Rúa Pescadería, abiertas al momento por las ostreiras.</li>
+        <li><strong>Combarro</strong>Sardiñada y vieira a la plancha con vistas a los hórreos, para las cenas de casa.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ============ RESERVAS ============ -->
+<section class="bloque" id="reservas">
+  <div class="bloque-cab">
+    <h2>Reservas y gestiones</h2>
+    <span class="mono">Cuanto antes, mejor: es agosto</span>
+  </div>
+  <div class="check-grid">
+    <div class="check"><span class="mono">Hecho ✓</span><strong>Catamarán del Sil</strong><span>Abeleda, 22 ago 11:00. Llevar DNI y llegar 30–45 min antes. Mirar lanzadera gratuita de la naviera.</span></div>
+    <div class="check"><span class="mono">Urgente</span><strong>Autorización Illas Atlánticas</strong><span>Gratuita, en la web de la Xunta. Sin ella no se embarca a Ons. Una por persona, con DNI.</span></div>
+    <div class="check"><span class="mono">Urgente</span><strong>Barco Bueu → Ons</strong><span>25 ago, primera salida de la mañana. Se agota en agosto.</span></div>
+    <div class="check"><span class="mono">Urgente</span><strong>Barco mejillonero O Grove</strong><span>24 ago ~16:00. Travesía por las bateas con degustación (~16 €).</span></div>
+    <div class="check"><span class="mono">Llamar</span><strong>Furanchos de Meaño</strong><span>Confirmar apertura en agosto y reservar mesa para el día 24 (teléfonos en la guía de comer).</span></div>
+    <div class="check"><span class="mono">Sin reserva</span><strong>Ferry Vigo–Cangas</strong><span>Salidas cada media hora. Billete en la estación marítima el mismo día 27.</span></div>
+  </div>
+</section>
+
+<!-- ============ INFOGRAFÍAS ============ -->
+<section class="bloque" id="infografias">
+  <div class="bloque-cab">
+    <h2>Infografías</h2>
+    <span class="mono">Para llevar en el móvil o imprimir</span>
+  </div>
+  <div class="infos">
+    <a class="info-link rs-i" href="infografia-ribeira-sacra.html">
+      <span class="mono">Etapa 1 · 21–22 ago</span>
+      <strong>Ribeira Sacra →</strong>
+      <span>Cronograma completo de los dos días, con horas, comidas y recordatorios.</span>
+    </a>
+    <a class="info-link rb-i" href="infografia-rias-baixas.html">
+      <span class="mono">Etapa 2 · 23–27 ago</span>
+      <strong>Rías Baixas →</strong>
+      <span>Los cinco días con la regla del furancho y la lista de reservas.</span>
+    </a>
+  </div>
+</section>
+
+<footer class="pie">
+  <div class="pie-in">
+    <span class="marca">Galicia <em>2026</em> · del cañón al Atlántico</span>
+    <span>21–27 de agosto · Carballedo → Combarro · hecho con morriña anticipada</span>
+  </div>
+</footer>
+
+</body>
+</html>
